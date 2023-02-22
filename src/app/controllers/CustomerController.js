@@ -1,6 +1,8 @@
 class CustomerController {
-  index(request, response) {
-    response.send('legal index');
+  async index(request, response) {
+    const customers = await CustomerRepository.findAll();
+
+    response.json(customers);
   }
 
   show(request, response) {

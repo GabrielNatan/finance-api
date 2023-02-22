@@ -1,3 +1,5 @@
+const CustomerRepository = require('../repositories/CustomerRepository');
+
 class CustomerController {
   async index(request, response) {
     const customers = await CustomerRepository.findAll();

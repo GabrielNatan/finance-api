@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const CustomerRepository = require('../repositories/CustomerRepository');
+const WalletController = require('./WalletController');
 
 class CustomerController {
   async index(request, response) {
@@ -26,7 +27,7 @@ class CustomerController {
         const customer = await CustomerRepository.create({
           name, lastName, password: hash, hash: salt,
         });
-
+        await WalletController.store(customer.id);
         response.status(200).json(customer);
       });
     });
